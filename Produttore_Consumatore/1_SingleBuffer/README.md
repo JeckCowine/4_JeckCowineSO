@@ -38,6 +38,10 @@ I valori prodotti sono:
 
 ```console
 $ make
+gcc -c MainSingleBuff.c
+gcc -c SingleBuff.c
+gcc -c semafori.c
+gcc -o SingleBuff MainSingleBuff.o SingleBuff.o semafori.o
 $ ./SingleBuff
 	PRODUTTORE[1]
 Valore Prodotto(int intero) = [76]
@@ -59,6 +63,9 @@ Valore Consumato(int intero) = [31]
 Valore Consumato(char carattere)= [Y]
 Valore Consumato(int array[DIM])= [771][383][84]
 Valore Consumato(char stringa[DIM])= [CVJYDXTYPP]
+$ make clean
+rm -rf *.o
+rm -rf SingleBuff
 ```
 
 
