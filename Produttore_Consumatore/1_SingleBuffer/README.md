@@ -20,7 +20,7 @@ Per la sincronizzazione dei processi produttore e consumatore si utilizzano due 
 e sbloccato da un consumatore in seguito ad un consumo. Il valore iniziale del semaforo deve essere pari ad ``1``;
 
 - ``MESSAGGIO_DISPONIBILE``: semaforo sbloccato da un produttore in seguito ad una produzione, 
-- e bloccato da un consumatore prima del consumo. Il valore iniziale del semaforo deve essere pari ad ``0``.
+e bloccato da un consumatore prima del consumo. Il valore iniziale del semaforo deve essere pari ad ``0``.
 
 La produzione ed il consumo avvengono rispettivamente all'interno delle procedure:
 
