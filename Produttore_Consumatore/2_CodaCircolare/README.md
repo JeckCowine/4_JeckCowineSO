@@ -18,19 +18,19 @@ I vincoli che caratterizzano il problema produttore-consumatore con pool di buff
 In particolare, si gestisce il pool di buffer come coda circolare, 
 in cui si impone la produzione di un valore in testa alla coda e la consumazione in coda.
 
-Per la sincronizzazione dei processi produttore e consumatore si utilizzano 4 semafori: 
+Per la sincronizzazione dei processi produttore e consumatore si utilizzano **4 semafori**: 
 
 
-- ``SPAZIO_DISPONIBILE``: semaforo bloccato da un produttore prima di una produzione, 
+- **SPAZIO_DISPONIBILE**: semaforo bloccato da un produttore prima di una produzione, 
 e sbloccato da un consumatore in seguito ad un consumo. Il valore iniziale del semaforo deve essere pari ad ``1``;
 
-- ``MESSAGGIO_DISPONIBILE``: semaforo sbloccato da un produttore in seguito ad una produzione, 
+- **MESSAGGIO_DISPONIBILE**: semaforo sbloccato da un produttore in seguito ad una produzione, 
 e bloccato da un consumatore prima del consumo. Il valore iniziale del semaforo deve essere pari ad ``0``.
 
-- ``MUTEX_C`` per gestire la competizione per le operazioni di consumo;
+- **MUTEX_C**: semaforo per gestire la competizione per le operazioni di consumo;
 Il valore iniziale del semaforo deve essere pari ad ``1``.
 
-- ``MUTEX_P`` per gestire la competizione per le operazioni di produzione.
+- **MUTEX_P**: semaforo per gestire la competizione per le operazioni di produzione.
 Il valore iniziale del semaforo deve essere pari ad ``1``.
 
 La produzione ed il consumo avvengono rispettivamente all'interno delle procedure:
