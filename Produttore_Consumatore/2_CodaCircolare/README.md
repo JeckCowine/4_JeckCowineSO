@@ -1,101 +1,104 @@
 ## Produttore-Consumatore con pool di buffer gestito come coda circolare
 
+
+Nel problema produttore-consumatore, abbiamo due categorie di processi:
+
+- **Produttori**, che scrivono un messaggio su di una risorsa condivisa
+- **Consumatori**, che prelevano il messaggio dalla risorsa condivisa
+
+Ciascuno dei due processi deve attendere, per completare la sua azione, l’arrivo del segnale dell’altro processo.
+
 ### Esercizio
 
-*Scrivere un’applicazione concorrente che implementi il problema dei Produttori/Consumatori.
-Il programma crei dei processi che agiscano da produttore e consumatore utilizzando un pool di buffer in cui sono memorizzati valori di tipo intero. Tale pool di buffer è gestito come coda circolare. Il pool di buffer è creato attraverso una shared memory e la sincronizzazione tra produttori e consumatori deve avvenire tramite l'utilizzo di semafori.*
+I vincoli che caratterizzano il problema produttore-consumatore con pool di buffer sono i seguenti:
 
-I vincoli che caratterizzano il problema produttore-consumatore con pool di buffer sono gli stessi per il problema a singolo buffer, ovvero che un produttore non può produrre se non c'è spazio disponibile, mentre un consumatore non può consumare se non ci sono valori disponibili.
+- Il produttore non può produrre un messaggio prima che qualche consumatore abbia letto il messaggio precedente.
+- Il consumatore non può prelevare alcun messaggio fino a che un produttore non l’abbia depositato.
 
-In particolare, si gestisce il pool di buffer come coda circolare, in cui si impone la produzione di un valore in testa alla coda e la consumazione in coda.
+In particolare, si gestisce il pool di buffer come coda circolare, 
+in cui si impone la produzione di un valore in testa alla coda e la consumazione in coda.
 
-<p align="center">
-<img src="../images/prod_cons_mult_buffer_coda_circolare.png" width="400">
-</p>
+Per la sincronizzazione dei processi produttore e consumatore si utilizzano 4 semafori: 
 
-Il pool di buffer, gestito come coda circolare, è implementato attraverso la seguente struttura dati:
 
-```c
-struct prodcons {
-    int buffer[DIM_BUFFER];
-    int testa;
-    int coda;
-};
-```
+- ``SPAZIO_DISPONIBILE``: semaforo bloccato da un produttore prima di una produzione, 
+e sbloccato da un consumatore in seguito ad un consumo. Il valore iniziale del semaforo deve essere pari ad ``1``;
 
-dove,
-
-- ``buffer[DIM_BUFFER]``, l'array di elementi di tipo ``int``(tipo del messaggio depositato dai produttori) contenente i valori prodotti;
-
-- ``testa`` di tipo intero. Si riferisce alla posizione del primo elemento libero in testa. In altre parole rappresenta il primo elemento disponibile per la memorizzazione del messaggio prodotto. L’elemento di testa è ``buffer[testa-1]``;
-
-- ``coda`` di tipo intero. L’elemento puntato si riferisce alla posizione dell’elemento di coda alla coda circolare. In altre parole l’elemento di coda è ``buffer[coda]``, ed è il primo elemento da poter consumare da parte dei consumatori.
-
-La struttura ``prodcons`` è condivisa tra i processi produttori e consumatori tramite shared memory.
-
-Per la sincronizzazione dei processi produttore e consumatore si utilizzano due semafori: 
-
-- ``SPAZIO_DISPONIBILE``, che indica la presenza di spazio disponibile in coda per la produzione di un messaggio. ``SPAZIO_DISPONIBILE `` ha valore iniziale pari a ``DIM_BUFFER`` (dimensione della coda)
-
-- ``MESSAGGIO_DISPONIBILE``, che indica il numero di messaggi presenti in coda. ``MESSAGGIO_DISPONIBILE`` ha valore iniziale pari a ``0``.
-
-Questi 2 semafori sono sufficienti solo per gestire un solo produttore e un solo consumatore. Per gestire produttori e consumatori multipli bisogna utilizzare altri 2 semafori perchè le operazioni di deposito e prelievo devono essere eseguite rispettivamente in mutua esclusione, ed essere quindi programmate come sezioni critiche.
-
-I due nuovi semafori sono:
+- ``MESSAGGIO_DISPONIBILE``: semaforo sbloccato da un produttore in seguito ad una produzione, 
+e bloccato da un consumatore prima del consumo. Il valore iniziale del semaforo deve essere pari ad ``0``.
 
 - ``MUTEX_C`` per gestire la competizione per le operazioni di consumo;
-- ``MUTEX_P`` per gestire la competizione per le operazioni di produzione.
+Il valore iniziale del semaforo deve essere pari ad ``1``.
 
-Entrambi i semafori sono inizializzati a ``1``.
+- ``MUTEX_P`` per gestire la competizione per le operazioni di produzione.
+Il valore iniziale del semaforo deve essere pari ad ``1``.
 
 La produzione ed il consumo avvengono rispettivamente all'interno delle procedure:
 
 ```c
-void produttore(struct prodcons *, int);
-void consumatore(struct prodcons *, int);
+void Produttore(Coda *, int);
+void Consumatore(Coda *, int);
+```
+dove, il primo argomento è un puntatore a interi della shared memory creata, 
+mentre il secondo parametro indica il descrittore del semaforo da utilizzare per le operazioni 
+di wait su semaforo (i.e., ``Wait_Sem``) e 
+signal su semaforo (i.e., ``Signal_Sem``) necessarie per la cooperazione,competizione tra produttore e consumatore.
+
+La shared memory creata è tutta la struttura struct.
+
+```c
+typedef struct {
+int buffer[DIM];//PER PASSARE VALORE INT
+char buffer2[DIM];//PER PASSARE VALORE CHAR
+
+int testa;
+int coda;
+}Coda;	
+```
+Viene Creata all'interno del MainCoda.c
+
+```c
+key_t Chiave_SHM = ftok("./CodaCircolare",'C'); // chiave della shared memory
+int ds_shm = shmget(Chiave_SHM, sizeof(Coda), IPC_CREAT|0664);
+if(ds_shm<0) { perror("SHM errore"); exit(1); }
+Coda * p;
+p = (Coda *) shmat(ds_shm, NULL, 0); 
+shmctl(ds_shm, IPC_RMID, NULL); // rimozione chiave della shared memory		
 ```
 
-dove, il primo argomento è un puntatore alla struttura che gestisce la coda circolare memorizzata nella shared memory creata, mentre il secondo parametro indica il descrittore del semaforo da utilizzare per le operazioni di wait su semaforo (i.e., ``Wait_Sem``) e signal su semaforo (i.e., ``Signal_Sem``) necessarie per la cooperazione e competizione tra produttore e consumatore.
-Il valore prodotto è un intero generato tramite la funzione ``rand()``.
+I valori prodotti sono:
+- Un intero generato da una funzione ``rand()`` 
+```c
+c->buffer[c->testa]= 1 + rand () % 999; // Valore casuale da 1 a 1.000
+printf("Il valore Prodotto(int buffer[DIM])= [%d]\n",c->buffer[c->testa]); //ELEMENTO SINGOLO int
+```
+- Un carattere generato da una funzione ``rand()`` 
+```c
+c->buffer2[c->testa]='A' + (rand () % 26); // Valore casuale da 'A' a 'Z'
+printf("Il valore Prodotto(char buffer2[DIM])= [%c]\n",c->buffer2[c->testa]); //ELEMENTO SINGOLO char
+```
 
-Analizzare il file [procedure.c](procedure.c) in cui vengono implementate le funzioni di produzione e consumazione, e il file [prodcons_coda_circolare.c](prodcons_coda_circolare.c) dove vengono inizializzati i semafori necessari.
-Compilare ed eseguire il codice:
-
+Esecuzione Programma Da Terminale:
 ```console
 $ make
-$ ./prodcons_vettore_stato
-Inizio figlio consumatore
-Inizio figlio consumatore
-Inizio figlio consumatore
-Inizio figlio consumatore
-Inizio figlio consumatore
-Inizio figlio produttore
-Inizio figlio produttore
-Inizio figlio produttore
-Inizio figlio produttore
-Inizio figlio produttore
-Il valore prodotto = 23
-Il valore prodotto = 41
-Il valore prodotto = 38
-Figlio produttore terminato
-Figlio produttore terminato
-Figlio produttore terminato
-Il valore consumato = 23
-Il valore consumato = 41
-Il valore consumato = 38
-Figlio produttore terminato
-Figlio produttore terminato
-Figlio consumatore terminato
-Il valore prodotto = 35
-Il valore prodotto = 20
-Figlio consumatore terminato
-Figlio consumatore terminato
-Il valore consumato = 35
-Figlio consumatore terminato
-Il valore consumato = 20
-Figlio consumatore terminato
+gcc -c CodaCircolare.c
+gcc -c MainCoda.c
+gcc -c semafori.c
+gcc -o CodaCircolare CodaCircolare.o MainCoda.o semafori.o
+$ ./CodaCircolare
+	PRODUTTORE[1]
+Il valore Prodotto(int buffer[DIM])= [456]
+Il valore Prodotto(char buffer2[DIM])= [M]
+	CONSUMATORE[1]
+Il valore Consumato(int buffer[DIM])= [456]
+Il valore Consumato(char buffer2[DIM])= [M]
+	PRODUTTORE[2]
+Il valore Prodotto(int buffer[DIM])= [987]
+Il valore Prodotto(char buffer2[DIM])= [L]
+	CONSUMATORE[2]
+Il valore Consumato(int buffer[DIM])= [987]
+Il valore Consumato(char buffer2[DIM])= [L]
+$ make clean
+rm -rf *.o
+rm -rf CodaCircolare
 ```
-
-
-
-
