@@ -14,12 +14,12 @@ I vincoli che caratterizzano il problema produttore-consumatore a singolo buffer
 - Il produttore non può produrre un messaggio prima che qualche consumatore abbia letto il messaggio precedente.
 - Il consumatore non può prelevare alcun messaggio fino a che un produttore non l’abbia depositato.
 
-Per la sincronizzazione dei processi produttore e consumatore si utilizzano due semafori: 
+Per la sincronizzazione dei processi produttore e consumatore si utilizzano **2 semafori**: 
 
-- `SPAZIO_DISPONIBILE`: semaforo bloccato da un produttore prima di una produzione, 
+- **SPAZIO_DISPONIBILE**: semaforo bloccato da un produttore prima di una produzione, 
 e sbloccato da un consumatore in seguito ad un consumo. Il valore iniziale del semaforo deve essere pari ad ``1``;
 
-- `MESSAGGIO_DISPONIBILE`: semaforo sbloccato da un produttore in seguito ad una produzione, 
+- **MESSAGGIO_DISPONIBILE**: semaforo sbloccato da un produttore in seguito ad una produzione, 
 e bloccato da un consumatore prima del consumo. Il valore iniziale del semaforo deve essere pari ad ``0``.
 
 La produzione ed il consumo avvengono rispettivamente all'interno delle procedure:
