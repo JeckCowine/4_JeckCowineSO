@@ -16,10 +16,10 @@ I vincoli che caratterizzano il problema produttore-consumatore a singolo buffer
 
 Per la sincronizzazione dei processi produttore e consumatore si utilizzano due semafori: 
 
-- ``SPAZIO_DISPONIBILE``: semaforo bloccato da un produttore prima di una produzione, 
+- `SPAZIO_DISPONIBILE`: semaforo bloccato da un produttore prima di una produzione, 
 e sbloccato da un consumatore in seguito ad un consumo. Il valore iniziale del semaforo deve essere pari ad ``1``;
 
-- ``MESSAGGIO_DISPONIBILE``: semaforo sbloccato da un produttore in seguito ad una produzione, 
+- `MESSAGGIO_DISPONIBILE`: semaforo sbloccato da un produttore in seguito ad una produzione, 
 e bloccato da un consumatore prima del consumo. Il valore iniziale del semaforo deve essere pari ad ``0``.
 
 La produzione ed il consumo avvengono rispettivamente all'interno delle procedure:
@@ -31,8 +31,8 @@ void Consumatore(SingleBuff*, int);
 
 dove, il primo argomento è un puntatore a interi della shared memory creata, 
 mentre il secondo parametro indica il descrittore del semaforo da utilizzare per le operazioni 
-di wait su semaforo (i.e., ``Wait_Sem``) e 
-signal su semaforo (i.e., ``Signal_Sem``) necessarie per la cooperazione tra produttore e consumatore.
+di wait su semaforo (i.e., `Wait_Sem`) e 
+signal su semaforo (i.e., `Signal_Sem`) necessarie per la cooperazione tra produttore e consumatore.
 
 La shared memory creata è tutta la struttura struct.
 
