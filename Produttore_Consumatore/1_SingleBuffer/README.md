@@ -42,6 +42,17 @@ char stringa[DIM_STRING];//PER PASSARE VALORE CHAR
 }SingleBuff;		
 ```
 
+Viene Creata all'interno del MainSingleBuff.c
+
+```c
+key_t Chiave_SHM = ftok ("./SingleBuff",'S');	// chiave della shared memory
+int ds_shm = shmget(Chiave_SHM, sizeof(SingleBuff), IPC_CREAT | 0664);
+if(ds_shm<0) { perror("SHM errore"); exit(1); }
+SingleBuff* s;			
+s = (SingleBuff*) shmat(ds_shm, NULL, 0);
+shmctl(ds_shm, IPC_RMID, NULL); // rimozione chiave della shared memory		
+```
+
 I valori prodotti sono:
 - Un intero generato tramite la funzione ``rand()`` 
 ```c
