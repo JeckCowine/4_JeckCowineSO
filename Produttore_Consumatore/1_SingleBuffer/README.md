@@ -44,10 +44,33 @@ char stringa[DIM_STRING];//PER PASSARE VALORE CHAR
 
 I valori prodotti sono:
 - Un intero generato tramite la funzione ``rand()`` 
+```c
+s->intero = 1 + rand () % 99; // Valore casuale da 1 a 1.000
+printf("Valore Prodotto(int intero) = [%d]\n", s->intero);
+```
 - Un carattere generato da una funzione ``rand()`` 
+```c
+s->carattere = 'A' + (rand () % 26) ; // Valore casuale da 'A' a 'Z'
+printf("Valore Prodotto(char carattere)= [%c]\n", s->carattere);
+```
 - Un array di interi generato da una funzione ``rand()`` 
+```c
+for(int i=0;i<DIM_INT;i++){
+   s->array[i] = 1 + rand() %999; // Valore casuale da 1 a 1.000 
+}
+printf("Valore Prodotto(int array[DIM])= ");
+for(int i=0;i<DIM_INT;i++) printf("[%d]", s->array[i]); 
+printf("\n");
+```
 - Una stringa di caratteri generata da una funzione ``rand()`` 
+```c
+for(int i=0;i<DIM_STRING;i++){
+   s->stringa[i] = 'A' + (rand () % 26) ; // Valore casuale da 'A' a 'Z'
+}
+printf("Valore Prodotto(char stringa[DIM])= [%s]\n", s->stringa);
+```
 
+Esecuzione Programma Da Terminale:
 ```console
 $ make
 gcc -c MainSingleBuff.c
