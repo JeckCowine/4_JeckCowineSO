@@ -29,7 +29,10 @@ void Produttore(SingleBuff*, int);
 void Consumatore(SingleBuff*, int);
 ```
 
-dove, il primo argomento è un puntatore a interi della shared memory creata, mentre il secondo parametro indica il descrittore del semaforo da utilizzare per le operazioni di wait su semaforo (i.e., ``Wait_Sem``) e signal su semaforo (i.e., ``Signal_Sem``) necessarie per la cooperazione tra produttore e consumatore.
+dove, il primo argomento è un puntatore a interi della shared memory creata, 
+mentre il secondo parametro indica il descrittore del semaforo da utilizzare per le operazioni 
+di wait su semaforo (i.e., ``Wait_Sem``) e 
+signal su semaforo (i.e., ``Signal_Sem``) necessarie per la cooperazione tra produttore e consumatore.
 
 La shared memory creata è tutta la struttura struct.
 
