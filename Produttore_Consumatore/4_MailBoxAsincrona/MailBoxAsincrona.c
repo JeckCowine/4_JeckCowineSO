@@ -23,12 +23,12 @@ void Remove_Dati(MailBox m,int ds_coda){
 }
 
 
-void Produttore(MailBox m,int ds_coda) {
+void Produttore(MailBox m,int ds_coda,int count) {
 	
 	// costruzione del messaggio da trasmettere
 	m.tipo=MESSAGGIO;
 	srand(getpid()*time(NULL));// Serve a scegliere sempre un valore diverso a ogni compilazione
-	printf("\n");
+	printf("\tPRODUTTORE[%d]\n",count+1);
 	
 			/* PER VALORE (int intero)*/
 	m.intero = 1 + rand () % 999; // Valore casuale da 1 a 1.000
@@ -63,9 +63,9 @@ void Produttore(MailBox m,int ds_coda) {
 	
 }
 
-void Consumatore(MailBox m,int ds_coda) {
+void Consumatore(MailBox m,int ds_coda,int count) {
 
-	printf("\n");
+	printf("\tCONSUMATORE[%d]\n",count+1);
 	
 	// ricezione messaggio
 	msgrcv(ds_coda,(void *) &m,sizeof(MailBox)-sizeof(long),MESSAGGIO,0);
