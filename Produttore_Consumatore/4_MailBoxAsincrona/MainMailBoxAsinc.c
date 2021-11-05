@@ -5,11 +5,11 @@
 int main(){
 
 	pid_t pid;
-	key_t Chiave_CODA = ftok ("./Start",'S');	// chiave della coda messaggio
+	key_t Chiave_CODA = ftok ("./MailBoxAsinc",'M');	// chiave della coda messaggio
 
 		//Inizializzazione MailBox
 	
-	int ds_coda =msgget(Chiave_CODA,IPC_CREAT|0664);
+	int ds_coda = msgget(Chiave_CODA,IPC_CREAT|0664);
 	if(ds_coda<0) { perror("MailBox errore"); exit(1); }
 	MailBox m; //Struct 
 
@@ -21,8 +21,8 @@ int main(){
 			pid = fork();
 			if(pid==0) {
 				//figlio Produttore
-			printf("\tPRODUTTORE[%d]",i+1);
-			Produttore(m, ds_coda);
+			int count=i;
+			Produttore(m, ds_coda,count);
 			exit(1);
 			}
 	}
@@ -31,8 +31,8 @@ int main(){
 			pid = fork();
 			if(pid==0) {
 				//figlio Consumatore
-			printf("\tCONSUMATORE[%d]",i+1);
-			Consumatore(m, ds_coda);
+			int count=i;
+			Consumatore(m, ds_coda,count);
 			exit(1);
 			}
 		}
