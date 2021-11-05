@@ -34,7 +34,7 @@ typedef struct {
 
 void Set_Dati(MailBox);
 void Remove_Dati(MailBox,int);
-void Produttore(MailBox,int);
-void Consumatore(MailBox,int);
+void Produttore(MailBox,int,int);
+void Consumatore(MailBox,int,int);
 
 /*.............END.............*/
