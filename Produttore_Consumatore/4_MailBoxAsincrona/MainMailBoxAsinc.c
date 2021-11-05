@@ -22,6 +22,7 @@ int main(){
 			if(pid==0) {
 				//figlio Produttore
 			int count=i;
+			sleep(2);
 			Produttore(m, ds_coda,count);
 			exit(1);
 			}
@@ -32,6 +33,7 @@ int main(){
 			if(pid==0) {
 				//figlio Consumatore
 			int count=i;
+			sleep(2);
 			Consumatore(m, ds_coda,count);
 			exit(1);
 			}
