@@ -2,12 +2,12 @@
 
 #include <stdio.h>
 #include <sys/wait.h>
+#include <sys/ipc.h>
+#include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/msg.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/ipc.h>
 #include <time.h>
 
 #define REQUEST_TO_SEND 1
