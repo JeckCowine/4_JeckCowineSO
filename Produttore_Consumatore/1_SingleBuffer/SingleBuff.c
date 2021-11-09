@@ -33,7 +33,7 @@ void Produttore(SingleBuff* s, int ds_sem) {
 	srand(time(NULL)); // Serve a scegliere sempre un valore diverso a ogni compilazione
 	printf("\n");
 			/* PER VALORE (int intero)*/
-	s->intero = 1 + rand () % 99; // Valore casuale da 1 a 1.000
+	s->intero = 1 + rand () % 999; // Valore casuale da 1 a 1.000
 	printf("Valore Prodotto(int intero) = [%d]\n", s->intero); //ELEMENTO SINGOLO int
 	/*.....................*/	
 	
