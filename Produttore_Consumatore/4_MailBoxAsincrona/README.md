@@ -46,7 +46,7 @@ dove:
 La MailBox viene Creata all'interno del MainMailBoxAsinc.c
 
 ```c
-key_t Chiave_CODA = ftok ("./Start",'S');	// chiave della coda messaggio
+key_t Chiave_CODA = ftok ("./MailBoxAsinc",'M');	// chiave della coda messaggio
 int ds_coda =msgget(Chiave_CODA,IPC_CREAT|0664);
 if(ds_coda<0) { perror("MailBox errore"); exit(1); }
 MailBox m; //Struct 
