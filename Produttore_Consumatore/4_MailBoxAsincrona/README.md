@@ -46,7 +46,7 @@ dove:
 La MailBox viene Creata all'interno del MainMailBoxAsinc.c
 
 ```c
-key_t Chiave_CODA = ftok ("./MailBoxAsinc",'M');	// chiave della coda messaggio
+key_t Chiave_CODA = ftok ("./Start",'S');	// chiave della coda messaggio
 int ds_coda =msgget(Chiave_CODA,IPC_CREAT|0664);
 if(ds_coda<0) { perror("MailBox errore"); exit(1); }
 MailBox m; //Struct 
@@ -56,11 +56,19 @@ msgctl(ds_coda,IPC_RMID,0);// rimozione chiave della MailBox
 Le funzioni principali di funzionamento della Mailbox sono:
 
 ```c
+/*MailBoxAsincrona.h*/
+#define MESSAGGIO 1
+
+/*MailBoxAsincrona.c*/
+void Produttore(MailBox m, int ds_coda){
 m.tipo=MESSAGGIO;
 	// invio messaggio
 msgsnd(ds_coda,(void*)&m,sizeof(MailBox)-sizeof(long),IPC_NOWAIT);
+}
+void Consumatore(MailBox m, int ds_coda) {
 	// ricezione messaggio
 msgrcv(ds_coda,(void *) &m,sizeof(MailBox)-sizeof(long),MESSAGGIO,0);
+}
 ```
 
 I messaggi inviati sono:
