@@ -7,7 +7,9 @@ void Set_Dati(MailBox m){
 	key_t Chiave_CODA1 = ftok ("./MailBoxSincrona",'M');	// chiave della coda messaggio
 	key_t Chiave_CODA2 = ftok ("./MailBoxSincrona",'M');	// chiave della coda messaggio
     ds_coda1=msgget(Chiave_CODA1,IPC_CREAT|0664);
+    if(ds_coda1<0) { perror("MailBox1 errore"); exit(1); }
 	ds_coda2=msgget(Chiave_CODA2,IPC_CREAT|0664);
+	if(ds_coda2<0) { perror("MailBox2 errore"); exit(1); }
 	//Inizializzazione dei valori da passare tra i Produttori e Consumatori	
 	m.intero=0;
 	m.carattere='0';
