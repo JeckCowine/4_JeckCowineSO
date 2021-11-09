@@ -18,9 +18,9 @@ void Set_Dati(MailBox m){
 
 void Remove_Dati(MailBox m, int ds_coda){
 	
-	msgctl(ds_coda,IPC_RMID,0);
-	msgctl(ds_coda1,IPC_RMID,0);
-	msgctl(ds_coda2,IPC_RMID,0);
+	msgctl(ds_coda,IPC_RMID,0);// rimozione chiave della MailBox
+	msgctl(ds_coda1,IPC_RMID,0);// rimozione chiave della MailBox
+	msgctl(ds_coda2,IPC_RMID,0);// rimozione chiave della MailBox
 	m.intero=0;
 	m.carattere='0';
 	for(int i=0;i<DIM_INT;i++) m.array[i]=0;
