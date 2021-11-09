@@ -1,4 +1,4 @@
-## Produttore-Consumatore con coda di messaggi asincrona
+## Produttore-Consumatore con coda di messaggi sincrona
 
 Nel problema produttore-consumatore, abbiamo due categorie di processi:
 
@@ -9,7 +9,7 @@ Ciascuno dei due processi deve attendere, per completare la sua azione, l’arri
 
 ### Esercizio
 
-I vincoli che caratterizzano il problema produttore-consumatore con coda di messaggi asincrona sono i seguenti:
+I vincoli che caratterizzano il problema produttore-consumatore con coda di messaggi sincrona sono i seguenti:
 
 - Il produttore non può produrre un messaggio prima che qualche consumatore abbia letto il messaggio precedente.
 - Il consumatore non può prelevare alcun messaggio fino a che un produttore non l’abbia depositato.
@@ -29,10 +29,10 @@ La struttura struct contenente i tipi di messaggio da inviare:
 ```c
 typedef struct {
 	long tipo;	
-	int intero; 
-	int array[DIM_INT];
+	int intero;
 	char carattere;
-	char stringa[DIM_STRING];
+	int array[DIM_INT];
+	char stringa[DIM_STRING];	
 } MailBox;
 ```
 dove:
@@ -43,30 +43,63 @@ dove:
 - **int array[DIM]**, un array di elementi di tipo ``int``contenente il messaggio da inviare;
 - **char stringa[DIM]**, un array di elementi di tipo ``char``contenente il messaggio da inviare;
 
-La MailBox viene Creata all'interno del MainMailBoxAsinc.c
+La MailBox viene Creata all'interno del MainMailBoxSinc.c e inizializzata in MailBoxSincrona.c
 
 ```c
-key_t Chiave_CODA = ftok ("./Start",'S');	// chiave della coda messaggio
-int ds_coda =msgget(Chiave_CODA,IPC_CREAT|0664);
+key_t Chiave_CODA = ftok ("./MailBoxSincrona",'M'); // chiave della coda messaggio
+key_t Chiave_CODA1 = ftok ("./MailBoxSincrona",'M');	// chiave della coda messaggio
+key_t Chiave_CODA2 = ftok ("./MailBoxSincrona",'M');	// chiave della coda messaggio
+int ds_coda = msgget(Chiave_CODA,IPC_CREAT|0664);
+ds_coda1=msgget(Chiave_CODA1,IPC_CREAT|0664);
+ds_coda2=msgget(Chiave_CODA2,IPC_CREAT|0664);
 if(ds_coda<0) { perror("MailBox errore"); exit(1); }
+if(ds_coda1<0) { perror("MailBox1 errore"); exit(1); }
+if(ds_coda2<0) { perror("MailBox2 errore"); exit(1); }
 MailBox m; //Struct 
 msgctl(ds_coda,IPC_RMID,0);// rimozione chiave della MailBox
+msgctl(ds_coda1,IPC_RMID,0);// rimozione chiave della MailBox
+msgctl(ds_coda2,IPC_RMID,0);// rimozione chiave della MailBox
 ```
 
 Le funzioni principali di funzionamento della Mailbox sono:
 
 ```c
+/*MailBoxSincrona.h*/
+#define REQUEST_TO_SEND 1
+#define OK_TO_SEND 2
+#define MESSAGGIO 3
+static int ds_coda1;
+static int ds_coda2;
+
+/*MailBoxSincrona.c*/
+void Produttore(MailBox m, int ds_coda){
+MailBox m1,m2;
 m.tipo=MESSAGGIO;
-	// invio messaggio
-msgsnd(ds_coda,(void*)&m,sizeof(MailBox)-sizeof(long),IPC_NOWAIT);
-	// ricezione messaggio
-msgrcv(ds_coda,(void *) &m,sizeof(MailBox)-sizeof(long),MESSAGGIO,0);
+// Send Sincrona :
+m1.tipo=REQUEST_TO_SEND;
+// invio messaggio RTS
+msgsnd(ds_coda1,&m1,sizeof(MailBox)-sizeof(long),0);	
+// ricezione OTS
+msgrcv(ds_coda2,&m2,sizeof(MailBox)-sizeof(long),OK_TO_SEND,0);
+// invio messaggio
+msgsnd(ds_coda,&m,sizeof(MailBox)-sizeof(long),0);
+}
+void Consumatore(MailBox m, int ds_coda) {
+MailBox m1,m2
+// Receive Bloccante
+msgrcv(ds_coda1,&m1,sizeof(MailBox)-sizeof(long),REQUEST_TO_SEND,0);	// costruzione messaggio OTS
+m2.tipo=OK_TO_SEND;
+msgsnd(ds_coda2,&m2,sizeof(MailBox)-sizeof(long),0);
+// ricezione messaggio
+int tipomess= MESSAGGIO;
+msgrcv(ds_coda,&m,sizeof(MailBox)-sizeof(long),tipomess,0);
+}
 ```
 
 I messaggi inviati sono:
 - Un intero generato tramite la funzione ``rand()`` 
 ```c
-m.intero = 1 + rand () % 99; // Valore casuale da 1 a 1.000
+m.intero = 1 + rand () % 999; // Valore casuale da 1 a 1.000
 printf("Messaggio Inviato(int intero) = [%d]\n",m.intero);
 ```
 - Un carattere generato da una funzione ``rand()``
@@ -94,31 +127,31 @@ printf("Messaggio Inviato(char stringa) = [%s]\n",m.stringa);
 Esecuzione Programma Da Terminale:
 ```console
 $ make
-gcc -c MainMailBoxAsinc.c
-gcc -c MailBoxAsincrona.c
-gcc -o MailBoxAsinc MainMailBoxAsinc.o MailBoxAsincrona.o
-$ ./MailBoxAsinc
+gcc -c MainMailBoxSinc.c
+gcc -c MailBoxSincrona.c
+gcc -o MailBoxSinc MainMailBoxSinc.o MailBoxSincrona.o
+$ ./MailBoxSinc
 	PRODUTTORE[1]
-Messaggio Inviato(int intero) = [508]
-Messaggio Inviato(char carattere) = [B]
-Messaggio Inviato(int array[DIM]) = [189][189][769]
-Messaggio Inviato(char stringa) = [TXIVDP]
+Messaggio Inviato(int intero) = [395]
+Messaggio Inviato(char carattere) = [V]
+Messaggio Inviato(int array[DIM]) = [400][15][365]
+Messaggio Inviato(char stringa) = [RMYIFS]
 	CONSUMATORE[1]
-Messaggio Ricevuto(int intero) = [508]
-Messaggio Ricevuto(char carattere) = [B]
-Messaggio Ricevuto(int array[DIM]) = [189][189][769]
-Messaggio Ricevuto(char stringa) = [TXIVDP]
+Messaggio Ricevuto(int intero) = [395]
+Messaggio Ricevuto(char carattere) = [V]
+Messaggio Ricevuto(int array[DIM]) = [400][15][365]
+Messaggio Ricevuto(char stringa) = [RMYIFS]
 	PRODUTTORE[2]
-Messaggio Inviato(int intero) = [944]
-Messaggio Inviato(char carattere) = [G]
-Messaggio Inviato(int array[DIM]) = [556][961][304]
-Messaggio Inviato(char stringa) = [KCQWCC]
+Messaggio Inviato(int intero) = [32]
+Messaggio Inviato(char carattere) = [N]
+Messaggio Inviato(int array[DIM]) = [535][795][409]
+Messaggio Inviato(char stringa) = [SIRYBD]
 	CONSUMATORE[2]
-Messaggio Ricevuto(int intero) = [944]
-Messaggio Ricevuto(char carattere) = [G]
-Messaggio Ricevuto(int array[DIM]) = [556][961][304]
-Messaggio Ricevuto(char stringa) = [KCQWCC]
+Messaggio Ricevuto(int intero) = [32]
+Messaggio Ricevuto(char carattere) = [N]
+Messaggio Ricevuto(int array[DIM]) = [535][795][409]
+Messaggio Ricevuto(char stringa) = [SIRYBD]
 $ make clean
 rm -f *.o
-rm -f ./MailBoxAsinc
+rm -f ./MailBoxSinc
 ```
