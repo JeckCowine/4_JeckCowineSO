@@ -59,7 +59,7 @@ shmctl(ds_shm, IPC_RMID, NULL); // rimozione chiave della shared memory
 I valori prodotti sono:
 - Un intero generato tramite la funzione ``rand()`` 
 ```c
-s->intero = 1 + rand () % 99; // Valore casuale da 1 a 1.000
+s->intero = 1 + rand () % 999; // Valore casuale da 1 a 1.000
 printf("Valore Prodotto(int intero) = [%d]\n", s->intero);
 ```
 - Un carattere generato da una funzione ``rand()`` 
@@ -93,22 +93,22 @@ gcc -c semafori.c
 gcc -o SingleBuff MainSingleBuff.o SingleBuff.o semafori.o
 $ ./SingleBuff
 	PRODUTTORE[1]
-Valore Prodotto(int intero) = [76]
+Valore Prodotto(int intero) = [756]
 Valore Prodotto(char carattere)= [D]
 Valore Prodotto(int array[DIM])= [732][495][790]
 Valore Prodotto(char stringa[DIM])= [JELMYVNFJC]
 	CONSUMATORE[1]
-Valore Consumato(int intero) = [76]
+Valore Consumato(int intero) = [756]
 Valore Consumato(char carattere)= [D]
 Valore Consumato(int array[DIM])= [732][495][790]
 Valore Consumato(char stringa[DIM])= [JELMYVNFJC]
 	PRODUTTORE[2]
-Valore Prodotto(int intero) = [31]
+Valore Prodotto(int intero) = [301]
 Valore Prodotto(char carattere)= [Y]
 Valore Prodotto(int array[DIM])= [771][383][84]
 Valore Prodotto(char stringa[DIM])= [CVJYDXTYPP]
 	CONSUMATORE[2]
-Valore Consumato(int intero) = [31]
+Valore Consumato(int intero) = [301]
 Valore Consumato(char carattere)= [Y]
 Valore Consumato(int array[DIM])= [771][383][84]
 Valore Consumato(char stringa[DIM])= [CVJYDXTYPP]
