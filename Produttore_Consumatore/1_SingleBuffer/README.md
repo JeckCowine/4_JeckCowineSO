@@ -87,10 +87,7 @@ printf("Valore Prodotto(char stringa[DIM])= [%s]\n", s->stringa);
 Esecuzione Programma Da Terminale:
 ```console
 $ make
-gcc -c MainSingleBuff.c
-gcc -c SingleBuff.c
-gcc -c semafori.c
-gcc -o SingleBuff MainSingleBuff.o SingleBuff.o semafori.o
+gcc MainSingleBuff.c SingleBuff.c semafori.c -o SingleBuff 
 $ ./SingleBuff
 	PRODUTTORE[1]
 Valore Prodotto(int intero) = [756]
