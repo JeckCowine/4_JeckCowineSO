@@ -81,10 +81,7 @@ printf("Il valore Prodotto(char buffer2[DIM])= [%c]\n",c->buffer2[c->testa]); //
 Esecuzione Programma Da Terminale:
 ```console
 $ make
-gcc -c CodaCircolare.c
-gcc -c MainCoda.c
-gcc -c semafori.c
-gcc -o CodaCircolare CodaCircolare.o MainCoda.o semafori.o
+gcc MainCoda.c CodaCircolare.c semafori.c -o CodaCircolare
 $ ./CodaCircolare
 	PRODUTTORE[1]
 Il valore Prodotto(int buffer[DIM])= [456]
