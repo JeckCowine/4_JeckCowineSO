@@ -1,13 +1,7 @@
 all: CodaCircolare
 
-CodaCircolare: CodaCircolare.o MainCoda.o semafori.o
-	gcc -o CodaCircolare CodaCircolare.o MainCoda.o semafori.o
-
-MainCoda.o: MainCoda.c CodaCircolare.h 
-	gcc -c MainCoda.c
-
-CodaCircolare.o: CodaCircolare.c CodaCircolare.h
-	gcc -c CodaCircolare.c
+CodaCircolare: CodaCircolare.h semafori.o
+	gcc MainCoda.c CodaCircolare.c -o CodaCircolare semafori.o
 
 semafori.o: semafori.c semafori.h
 	gcc -c semafori.c
