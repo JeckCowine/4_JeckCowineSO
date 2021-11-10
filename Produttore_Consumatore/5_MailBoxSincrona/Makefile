@@ -1,13 +1,7 @@
 all: MailBoxSinc
 
-MailBoxSinc:MainMailBoxSinc.o MailBoxSincrona.o
-	gcc -o MailBoxSinc MainMailBoxSinc.o MailBoxSincrona.o
-
-MainMailBoxSinc.o:MainMailBoxSinc.c MailBoxSincrona.h
-	gcc -c MainMailBoxSinc.c
-
-MailBoxSincrona.o:MailBoxSincrona.c MailBoxSincrona.h
-	gcc -c MailBoxSincrona.c
+MailBoxSinc: MailBoxSincrona.h
+	gcc MainMailBoxSinc.c MailBoxSincrona.c -o MailBoxSinc
 
 clean:
 	rm -f *.o
