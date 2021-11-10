@@ -96,10 +96,7 @@ Esecuzione Programma Da Terminale:
 
 ```console
 $ make
-gcc -c VettorediStato.c
-gcc -c semafori.c
-gcc -c MainVettore.c
-gcc -o VettoreDiStato VettorediStato.o semafori.o MainVettore.o
+gcc MainVettore.c VettorediStato.c semafori.c -o VettoreDiStato 
 $ ./VettoreDiStato
 	PRODUTTORE[1]
 Il valore Prodotto(int buffer[DIM])= [391]
