@@ -1,16 +1,7 @@
 all: VettoreDiStato
 
-VettoreDiStato: VettorediStato.o semafori.o MainVettore.o
-	gcc -o VettoreDiStato VettorediStato.o semafori.o MainVettore.o
-
-MainVettore.o: MainVettore.c
-	gcc -c MainVettore.c
-
-VettorediStato.o: VettorediStato.h VettorediStato.c
-	gcc -c VettorediStato.c
-
-semafori.o: semafori.c semafori.h
-	gcc -c semafori.c
+VettoreDiStato: VettorediStato.h semafori.h 
+	gcc MainVettore.c VettorediStato.c semafori.c -o VettoreDiStato 
 
 clean:
 	rm -rf *.o
