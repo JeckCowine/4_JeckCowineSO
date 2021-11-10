@@ -102,9 +102,7 @@ printf("Messaggio Inviato(char stringa) = [%s]\n",m.stringa);
 Esecuzione Programma Da Terminale:
 ```console
 $ make
-gcc -c MainMailBoxAsinc.c
-gcc -c MailBoxAsincrona.c
-gcc -o MailBoxAsinc MainMailBoxAsinc.o MailBoxAsincrona.o
+gcc MainMailBoxAsinc.c MailBoxAsincrona.c -o MailBoxAsinc
 $ ./MailBoxAsinc
 	PRODUTTORE[1]
 Messaggio Inviato(int intero) = [508]
