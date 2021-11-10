@@ -1,11 +1,8 @@
 all:SingleBuff
 
-SingleBuff: SingleBuff.h semafori.o
-	gcc MainSingleBuff.c SingleBuff.c -o SingleBuff semafori.o
+SingleBuff: SingleBuff.h semafori.h
+	gcc MainSingleBuff.c SingleBuff.c semafori.c -o SingleBuff 
 			
-semafori.o: semafori.h
-	gcc -c semafori.c
-
 clean:
 	rm -rf *.o
 	rm -rf SingleBuff
