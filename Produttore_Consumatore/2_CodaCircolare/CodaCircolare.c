@@ -14,8 +14,8 @@ void Set_Dati(Coda* c, int ds_sem) {
 	c->testa=0;
 	c->coda=0;
 	 //Inizializzazione dei valori da passare tra i Produttori e Consumatori
-	for(int i=0;i<DIM;i++) c->buffer[i]=0;	
-	for(int i=0;i<DIM;i++) c->buffer2[i]='0';	
+	c->buffer[DIM]=0;	
+	c->buffer2[DIM]='0';
 	
 }
 
@@ -23,8 +23,8 @@ void Remove_Dati(Coda* c, int ds_sem, int ds_shm){
 	
 	c->testa=0;
 	c->coda=0;
-	for(int i=0;i<DIM;i++) c->buffer[i]=0;
-	for(int i=0;i<DIM;i++) c->buffer2[i]='0';
+	c->buffer[DIM]=0;	
+	c->buffer2[DIM]='0';
 	shmctl(ds_shm, IPC_RMID, NULL); // rimozione chiave della SHM
     semctl(ds_sem, 0, IPC_RMID); //rimozione chiave del SEM
 	
