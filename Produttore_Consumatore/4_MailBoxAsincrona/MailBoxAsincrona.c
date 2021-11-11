@@ -7,8 +7,8 @@ void Set_Dati(MailBox m){
 	//Inizializzazione dei valori da passare tra i Produttori e Consumatori	
 	m.intero=0;
 	m.carattere='0';
-	for(int i=0;i<DIM_INT;i++) m.array[i]=0;
-	for(int i=0;i<DIM_INT;i++) m.stringa[i]='0';
+	m.array[DIM_INT]=0;
+	m.stringa[DIM_STRING]='0';
 	
 }
 
@@ -16,8 +16,8 @@ void Remove_Dati(MailBox m,int ds_coda){
 
 	m.intero=0;
 	m.carattere='0';
-	for(int i=0;i<DIM_INT;i++) m.array[i]=0;
-	for(int i=0;i<DIM_INT;i++) m.stringa[i]='0';
+	m.array[DIM_INT]=0;
+	m.stringa[DIM_STRING]='0';
 	msgctl(ds_coda,IPC_RMID,0);// rimozione chiave della MailBox
 	
 }
