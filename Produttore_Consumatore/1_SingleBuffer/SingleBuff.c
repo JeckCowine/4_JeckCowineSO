@@ -10,8 +10,8 @@ void Set_Dati(SingleBuff* s,int ds_sem){
 	//Inizializzazione dei valori da passare tra i Produttori e Consumatori	
 	s->intero=0;
 	s->carattere='0';
-	for(int i=0;i<DIM_INT;i++) s->array[i]=0;
-	for(int i=0;i<DIM_STRING;i++) s->stringa[i]='0';
+	s->array[DIM_INT]=0;
+	s->stringa[DIM_STRING]='0';
 	
 }
 
@@ -19,8 +19,8 @@ void Remove_Dati(SingleBuff* s, int ds_sem, int ds_shm){
 	
 	s->intero=0;
 	s->carattere='0';
-	for(int i=0;i<DIM_INT;i++) s->array[i]=0;
-	for(int i=0;i<DIM_STRING;i++) s->stringa[i]='0';
+	s->array[DIM_INT]=0;
+	s->stringa[DIM_STRING]='0';
 	shmctl(ds_shm, IPC_RMID, NULL); // rimozione chiave della shared memory
     semctl(ds_sem, 0, IPC_RMID); //rimozione chiave del semaforo)
 	
