@@ -11,17 +11,17 @@ void Set_Dati(Vettore* v, int ds_sem) {
     semctl(ds_sem, MUTEX_C, SETVAL, 1);
     semctl(ds_sem, MUTEX_P, SETVAL, 1);
 	//Inizializzazione dei valori da passare tra i Produttori e Consumatori
-	for(int i=0;i<DIM;i++) v->buffer[i]=0;	
-	for(int i=0;i<DIM;i++) v->buffer2[i]='0';	
-	for(int i=0;i<DIM;i++) v->stato[i]=0;	
+	v->buffer[DIM]=0;	
+	v->buffer2[DIM]='0';	
+	v->stato[DIM]=0;	
 	
 }
 
 void Remove_Dati(Vettore* v, int ds_sem, int ds_shm){
 	
-	for(int i=0;i<DIM;i++) v->buffer[i]=0;	
-	for(int i=0;i<DIM;i++) v->buffer2[i]='0';	
-	for(int i=0;i<DIM;i++) v->stato[i]=0;	
+	v->buffer[DIM]=0;	
+	v->buffer2[DIM]='0';	
+	v->stato[DIM]=0;
 	shmctl(ds_shm, IPC_RMID, NULL); // rimozione chiave della SHM
     semctl(ds_sem, 0, IPC_RMID); //rimozione chiave del SEM
 	
