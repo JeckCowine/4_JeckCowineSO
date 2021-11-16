@@ -1,4 +1,4 @@
-# SO-Esercizi_2_Produttore_Consumatore
+# Produttore_Consumatore
 
 1_In questa lezione esercitativa viene affrontato il problema **Produttore-Consumatore in applicazioni multiprocesso**. 
 Si vedrà come risolvere tale problema grazie all'utilizzo delle risorse IPC `shared memory e semafori`.
