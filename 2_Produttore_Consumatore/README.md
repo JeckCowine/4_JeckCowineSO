@@ -8,15 +8,15 @@ Sommario degli esempi:
 
 - `[**1_SingleBuffer**]`
 
-Produttore-Consumatore singolo buffer;
+Produttore-Consumatore singolo buffer con scambio parametri mediante Shared Memory;
 
 - `[**2_CodaCircolare**]`
 
-Produttore-Consumatore con con pool di buffer gestito come coda circolare;
+Produttore-Consumatore con con pool di buffer gestito come coda circolare con scambio parametri mediante Shared Memory;
 
 - `[**3_VettorediStato**]`
 
-Produttore-Consumatore con pool di buffer gestito con vettore di stato;
+Produttore-Consumatore con pool di buffer gestito con vettore di stato con scambio parametri mediante Shared Memory;
 
 2_In questa lezione esercitativa viene affrontato il problema **Produttore-Consumatore in applicazioni multiprocesso**. 
 Si vedrà come risolvere tale problema grazie all'utilizzo della `MailBox(coda messaggi), Sincrona e Asincrona`.
