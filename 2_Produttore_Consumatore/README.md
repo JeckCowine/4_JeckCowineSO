@@ -19,9 +19,9 @@ Produttore-Consumatore con con pool di buffer gestito come coda circolare con sc
 
 Produttore-Consumatore con pool di buffer gestito con vettore di stato con scambio parametri mediante Shared Memory;
 
-Sommario degli esempi:
-
 `Questi file risolvono il problema grazie all'utilizzo della MailBox(coda messaggi), Sincrona e Asincrona`.
+
+Sommario degli esempi:
 
 - `[**4_MailBoxAsincrona**]`
 
