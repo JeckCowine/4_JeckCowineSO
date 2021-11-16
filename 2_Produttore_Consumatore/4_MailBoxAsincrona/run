@@ -1,0 +1,25 @@
+clear
+echo "    Execution the build"
+echo
+echo "Execution the make clean"
+echo "************"
+make clean
+echo
+read junk
+echo "Execution the make"
+echo "************"
+make
+echo
+read junk
+clear
+echo "Execution ./MailBoxAsincrona"
+echo "************"
+./MailBoxAsinc
+echo "Execution FINISH press key"
+echo "************"
+read junk
+make clean
+clear
+echo "Finish the ./run"
+echo
+
