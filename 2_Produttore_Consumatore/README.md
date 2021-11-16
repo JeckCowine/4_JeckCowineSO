@@ -2,7 +2,7 @@
 
 1_In questa lezione esercitativa viene affrontato il problema **Produttore-Consumatore in applicazioni multiprocesso**. 
 
-Si vedrà come risolvere tale problema grazie all'utilizzo delle risorse IPC `shared memory e semafori`.
+`Questi file risolvono il problema grazie all'utilizzo delle risorse IPC shared memory e semafori`.
 
 Sommario degli esempi:
 
@@ -19,9 +19,7 @@ Produttore-Consumatore con con pool di buffer gestito come coda circolare con sc
 
 Produttore-Consumatore con pool di buffer gestito con vettore di stato con scambio parametri mediante Shared Memory;
 
-2_In questa lezione esercitativa viene affrontato il problema **Produttore-Consumatore in applicazioni multiprocesso**. 
-
-Si vedrà come risolvere tale problema grazie all'utilizzo della `MailBox(coda messaggi), Sincrona e Asincrona`.
+`Questi file risolvono il problema grazie all'utilizzo della MailBox(coda messaggi), Sincrona e Asincrona`.
 
 - `[**4_MailBoxAsincrona**]`
 
