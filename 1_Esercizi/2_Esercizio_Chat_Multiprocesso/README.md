@@ -8,22 +8,24 @@ Scrivere un programma basato su code di messaggi UNIX per consentire la conversa
 [3]: Il programma dovrà instanziare due processi figli, Mittente e Ricevente, dove:
 
   **(MITTENTE)**: esegue in loop in cui ad ogni iterazione si mette in attesa di una stringa dallo standart input
-				                 ed invia un messaggio con la stringa sulla prima coda. Quando l'utente inserisce 'exit'
-				                 il programma deve inviare un messaggio con una stringa 'exit' sulla seconda coda e terminare
+		  ed invia un messaggio con la stringa sulla prima coda. Quando l'utente inserisce 'exit'
+		  il programma deve inviare un messaggio con una stringa 'exit' sulla seconda coda e terminare
 				     
   **(RICEVENTE)**: esegue in loop in cui ad ogni iterazione si mette in attesa di un messaggio dalla seconda coda
-								   e appena ricevuta stamperà sullo standart output la stringa ricevuta. In caso di ricezione della 
-								   stringa 'exit' dovrà terminare
+		   e appena ricevuta stamperà sullo standart output la stringa ricevuta. In caso di ricezione della 
+		   stringa 'exit' dovrà terminare
 								   
 ![image](https://user-images.githubusercontent.com/93724872/143234187-26364783-5594-4445-8d3f-ae21bb58ab60.png)
 
 [1]: Se un mittente ed un ricevente usano gli stessi caratteri di ingresso, 
-		es: **./chat a b (Primo Terminale)  ./chat a b (Secondo Terminale)**
-        essi devono poter comunicare tra loro usando le stesse code di messaggi condivise. 
-        Se invece un mittente e un ricevente usano caratteri di ingresso diversi,
-        es: **./chat a b (Primo Terminale)  ./chat b a (Secondo Terminale)**
-        essi useranno code diverse e non potranno comunicare tra loro. 
+     es: **./chat a b (Primo Terminale)  ./chat a b (Secondo Terminale)**
+     essi devono poter comunicare tra loro usando le stesse code di messaggi condivise. 
+     Se invece un mittente e un ricevente usano caratteri di ingresso diversi,
+     es: **./chat a b (Primo Terminale)  ./chat b a (Secondo Terminale)**
+     essi useranno code diverse e non potranno comunicare tra loro. 
+     
 [2]: Si utilizzi la funzione scanf() per leggere una stringa dallo standard input.
+
 		```c
 		/*Chat.c*/
 		printf("Msg da inviare: ");	
@@ -180,38 +182,39 @@ clean:
 
 Per l'esecuzione del programma si usufruiscono di due terminali che parlano tra loro
 [1]: ./chat a b
+
 [2]: ./chat b a
 
 Esecuzione Programma dai due terminali:
-```[1] console                                                                ```[2] console
+```[1] console                                                                [2] console
 $ make                                                                            
 gcc MainChat.c Chat.c -o chat                                       
-$ ./chat a b                                                                     $ ./chat b a 
-I caratteri inseriti sono: a b                                           I caratteri inseriti sono: b a
-Msg da inviare: Hi															Msg da inviare:
-	[Mittente]: Hi																[Ricevente]: Hi
+$ ./chat a b                                                            $ ./chat b a 
+I caratteri inseriti sono: a b                                          I caratteri inseriti sono: b a
+Msg da inviare: Hi							Msg da inviare:
+	[Mittente]: Hi							[Ricevente]: Hi
 Msg da inviare: I'M															
-	[Mittente]: I'M																[Ricevente]: I'M
+	[Mittente]: I'M							[Ricevente]: I'M
 Msg da inviare: Gianluca												
-	[Mittente]: Gianluca													[Ricevente]: Gianluca
+	[Mittente]: Gianluca						[Ricevente]: Gianluca
 Msg da inviare: Covino													
-	[Mittente]: Covino														[Ricevente]: Covino
+	[Mittente]: Covino						[Ricevente]: Covino
 Msg da inviare: I'M															
-	[Mittente]: I'M																[Ricevente]: I'M		
+	[Mittente]: I'M							[Ricevente]: I'M		
 Msg da inviare: Student												
-	[Mittente]: Student													[Ricevente]: Student
+	[Mittente]: Student						[Ricevente]: Student
 Msg da inviare: of 															
-	[Mittente]: of																[Ricevente]: of
+	[Mittente]: of							[Ricevente]: of
 Msg da inviare: the 
-	[Mittente]: the															[Ricevente]: the	
+	[Mittente]: the							[Ricevente]: the	
 Msg da inviare: Napoli
-	[Mittente]: Napoli														[Ricevente]: Napoli
+	[Mittente]: Napoli						[Ricevente]: Napoli
 Msg da inviare: University
-	[Mittente]: University												[Ricevente]: University
+	[Mittente]: University						[Ricevente]: University
 Msg da inviare: exit
-[Invio Exit]: exit																[Coda Ricevente Eliminata]: Identifier removed
-[Ricevuto Exit]: exit														exit
-$ make clean																	[Coda Mittente Eliminata]: Invalid argument
+[Invio Exit]: exit							[Coda Ricevente Eliminata]: Identifier removed
+[Ricevuto Exit]: exit							exit
+$ make clean								[Coda Mittente Eliminata]: Invalid argument
 rm -f *.o
 rm -f ./chat
 ```
