@@ -1,4 +1,4 @@
-/************* PROCESSO3_C ****************/
+	/************* PROCESSO3_C ****************/
 
 #include "CodaMessaggi.h"
 
@@ -11,12 +11,14 @@ int main(){
 	float media[2]={0};
 	float vettore1_int[DIM_MSG_p1+DIM_MSG_p2]={0};
 	float vettore2_int[DIM_MSG_p1+DIM_MSG_p2]={0};
+	int check;
 	
 	Coda c;
 		
 	for(int i=0;i<DIM_MSG_p1+DIM_MSG_p2;i++){ //RICEVE DIM_MSG_p1(5) + DIM_MSG_p2(5) --> 10MSG
 		
-		msgrcv(ds_coda,(void*)&c,sizeof(Coda)-sizeof(long),0,0); //RICEVO MESSAGGIO SU CODA
+		check = msgrcv(ds_coda,(void*)&c,sizeof(Coda)-sizeof(long),0,0); //RICEVO MESSAGGIO SU CODA
+		if(check<0) {perror("msgrcv error");_exit(1);}
 	
 		//STAMPE DEI MESSAGGI RICEVUTI
 		printf("Mesaggio Ricevuto<n°%d>, PROCESSO < %lu > \n",i+1,c.tipo);
