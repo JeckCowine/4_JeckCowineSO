@@ -134,23 +134,29 @@ Le funzioni principali di funzionamento della Coda di messaggi sono:
 #define DIM_MSG_p2 5
 
 /*Processo1.c*/
+int check;
 c.tipo=p1;
 // invio 5 messaggi su coda
 for(int i=0;i<DIM_MSG_p1;i++){ 
-msgsnd (ds_coda,(void*) &c,sizeof(Coda) - sizeof(long),IPC_NOWAIT); 
+check = msgsnd (ds_coda,(void*) &c,sizeof(Coda) - sizeof(long),IPC_NOWAIT); //INVIO MESSAGGIO SU CODA
+if(check<0) {perror("msgsnd error");_exit(1);}
 }
 
 /*Processo2.c*/
+int check;
 c.tipo=p2;
 // invio 5 messaggi su coda
 for(int i=0;i<DIM_MSG_p2;i++){ 
-msgsnd (ds_coda,(void*) &c,sizeof(Coda) - sizeof(long),IPC_NOWAIT); 
+check = msgsnd (ds_coda,(void*) &c,sizeof(Coda) - sizeof(long),IPC_NOWAIT); //INVIO MESSAGGIO SU CODA
+if(check<0) {perror("msgsnd error");_exit(1);}
 }
 
 /*Processo3.c*/
+int check;
 // riceve 10 messaggi dalla coda
 for(int i=0;i<DIM_MSG_p1+DIM_MSG_p2;i++){ 
-msgrcv(ds_coda,(void*)&c,sizeof(Coda)-sizeof(long),0,0); 
+check = msgrcv(ds_coda,(void*)&c,sizeof(Coda)-sizeof(long),0,0); //RICEVO MESSAGGIO SU CODA
+if(check<0) {perror("msgrcv error");_exit(1);}
 ```
 
 Le stampe dell'invio del Messaggio sono fatte rispettivamenti in Processo1.c e Processo2.c e sono uguali tra loro
@@ -186,9 +192,12 @@ Ricevuto dalla coda il valore float il Processo3.c ne calcola la media stampando
 float media[2]={0}; //Ha i risultati della media
 float vettore1_int[DIM_MSG_p1+DIM_MSG_p2]={0}; //Ha i valori float di P1
 float vettore2_int[DIM_MSG_p1+DIM_MSG_p2]={0}; //Ha i valori float di P2
-
+int check;
+	
 //Dopo la recezione dei msg dalla coda
-msgrcv(ds_coda,(void*)&c,sizeof(Coda)-sizeof(long),0,0); 
+check = msgrcv(ds_coda,(void*)&c,sizeof(Coda)-sizeof(long),0,0); 
+if(check<0) {perror("msgrcv error");_exit(1);}
+
 if(c.tipo == p1){ //Controllo per prendere solo i msg di P1
 	vettore1_int[i]=c.intero;
 	media[p1-1]+=c.intero / DIM_MSG_p1;
@@ -394,8 +403,3 @@ $ make clean
 rm -rf *.o
 rm -rf 1_start p1 p2 p3
 ```
-
-
-
-
-
