@@ -12,6 +12,7 @@ int main(){
 	Coda c;
 	
 	c.tipo=p1;
+	int check;
 	
 	for(int i=0;i<DIM_MSG_p1;i++){ //INVIA 5 MESSAGGI
 		
@@ -24,7 +25,8 @@ int main(){
 		//Genera un Carattere Da R a U (SI CONTA ANCHE R)
 		c.stringa[DIM_STRING-1]='\0'; //CARATTERE TERMINALE
 		
-		msgsnd (ds_coda,(void*) &c,sizeof(Coda) - sizeof(long),IPC_NOWAIT); //INVIO MESSAGGIO SU CODA
+		check = msgsnd (ds_coda,(void*) &c,sizeof(Coda) - sizeof(long),IPC_NOWAIT); //INVIO MESSAGGIO SU CODA
+		if(check<0) {perror("msgsnd error");_exit(1);}
 		
 		//STAMPE VALORI INVIATI
 		printf("Mesaggio Inviato<n°%d>, PROCESSO < %lu > \n",i+1,c.tipo);
