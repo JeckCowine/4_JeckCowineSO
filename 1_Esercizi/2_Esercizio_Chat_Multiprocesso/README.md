@@ -5,7 +5,9 @@ Scrivere un programma basato su code di messaggi UNIX per consentire la conversa
 [1]: Il programma deve essere un eseguibile che due utenti (su due terminali distinti) eseguono per poter conversare.
 
 [2]: Il programma deve accettare in ingresso dalla linea di comando una coppia di caratteri da utilizzare
+
         come identificativi delle code da usare per le conversazioni
+	
         es: **./chat a b (Primo Terminale)  ./chat b a (Secondo Terminale)**
 	
 [3]: Il programma dovrà instanziare due processi figli, Mittente e Ricevente, dove:
