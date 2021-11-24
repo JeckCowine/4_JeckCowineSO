@@ -5,27 +5,38 @@ Scrivere un programma basato su code di messaggi UNIX per consentire la conversa
 1: Il programma deve essere un eseguibile che due utenti (su due terminali distinti) eseguono per poter conversare.
 
 2: Il programma deve accettare in ingresso dalla linea di comando una coppia di caratteri da utilizzare
+
 come identificativi delle code da usare per le conversazioni
+
 es: **./chat a b (Primo Terminale)  ./chat b a (Secondo Terminale)**
 	
 3: Il programma dovrà instanziare due processi figli, Mittente e Ricevente, dove:
 
-  **(MITTENTE)**: esegue in loop in cui ad ogni iterazione si mette in attesa di una stringa dallo standart input
-		  ed invia un messaggio con la stringa sulla prima coda. Quando l'utente inserisce 'exit'
-		  il programma deve inviare un messaggio con una stringa 'exit' sulla seconda coda e terminare
+**(MITTENTE)**: esegue in loop in cui ad ogni iterazione si mette in attesa di una stringa dallo standart input
+
+ed invia un messaggio con la stringa sulla prima coda. Quando l'utente inserisce 'exit'
+
+il programma deve inviare un messaggio con una stringa 'exit' sulla seconda coda e terminare
 				     
-  **(RICEVENTE)**: esegue in loop in cui ad ogni iterazione si mette in attesa di un messaggio dalla seconda coda
-		   e appena ricevuta stamperà sullo standart output la stringa ricevuta. In caso di ricezione della 
-		   stringa 'exit' dovrà terminare
+**(RICEVENTE)**: esegue in loop in cui ad ogni iterazione si mette in attesa di un messaggio dalla seconda coda
+
+e appena ricevuta stamperà sullo standart output la stringa ricevuta. In caso di ricezione della 
+
+stringa 'exit' dovrà terminare
 								   
 ![image](https://user-images.githubusercontent.com/93724872/143234187-26364783-5594-4445-8d3f-ae21bb58ab60.png)
 
-[1]: Se un mittente ed un ricevente usano gli stessi caratteri di ingresso
-     es: **./chat a b (Primo Terminale)  ./chat a b (Secondo Terminale)**
-     essi devono poter comunicare tra loro usando le stesse code di messaggi condivise. 
-     Se invece un mittente e un ricevente usano caratteri di ingresso diversi,
-     es: **./chat a b (Primo Terminale)  ./chat b a (Secondo Terminale)**
-     essi useranno code diverse e non potranno comunicare tra loro. 
+1: Se un mittente ed un ricevente usano gli stessi caratteri di ingresso
+
+es: **./chat a b (Primo Terminale)  ./chat a b (Secondo Terminale)**
+
+essi devono poter comunicare tra loro usando le stesse code di messaggi condivise. 
+
+Se invece un mittente e un ricevente usano caratteri di ingresso diversi,
+
+es: **./chat a b (Primo Terminale)  ./chat b a (Secondo Terminale)**
+
+essi useranno code diverse e non potranno comunicare tra loro. 
      
 [2]: Si utilizzi la funzione scanf() per leggere una stringa dallo standard input.
 
@@ -47,8 +58,7 @@ typedef struct {
 
 dove:
 
-[1]: **long tipo** è il tipo del messaggio definito MESSAGGIO, 
-dichiarata in Chat.h e richiamato in Chat.c
+1: **long tipo** è il tipo del messaggio definito MESSAGGIO, dichiarata in Chat.h e richiamato in Chat.c
 
 ```c
 /*Chat.h*/
@@ -63,7 +73,7 @@ m.tipo=MESSAGGIO;
 
 ```
 
-[2]: **char stringa[20]**, un array di elementi di tipo ``char``contenente il messaggio da inviare e definito in Chat.c;
+2: **char stringa[20]**, un array di elementi di tipo ``char``contenente il messaggio da inviare e definito in Chat.c;
 
 ```c
 /*Chat.c*/ 
