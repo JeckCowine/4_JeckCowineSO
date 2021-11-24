@@ -5,6 +5,11 @@ Nel problema produttore-consumatore, abbiamo due categorie di processi:
 - **Produttori**, che scrivono un messaggio su una coda di messaggi asincrona
 - **Consumatori**, che prelevano il messaggio da una coda di messaggi asincrona
 
+![image](https://user-images.githubusercontent.com/93724872/143234187-26364783-5594-4445-8d3f-ae21bb58ab60.png)
+
+
+
+
 Ciascuno dei due processi deve attendere, per completare la sua azione, l’arrivo del segnale dell’altro processo.
 
 ### Esercizio
