@@ -16,7 +16,8 @@ ed invia un messaggio con la stringa sulla prima coda. Quando l'utente inserisce
 il programma deve inviare un messaggio con una stringa 'exit' sulla seconda coda e terminare
 
 **(RICEVENTE)**: esegue in loop in cui ad ogni iterazione si mette in attesa di un messaggio dalla seconda coda
-e appena ricevuta stamperà sullo standart output la stringa ricevuta. In caso di ricezione della 										stringa 'exit' dovrà terminare
+e appena ricevuta stamperà sullo standart output la stringa ricevuta. In caso di ricezione della 
+stringa 'exit' dovrà terminare
 ```
 
 ![image](https://user-images.githubusercontent.com/93724872/143234187-26364783-5594-4445-8d3f-ae21bb58ab60.png)
