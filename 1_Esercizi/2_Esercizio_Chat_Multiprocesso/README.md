@@ -11,11 +11,11 @@ es: **./chat a b (Primo Terminale)  ./chat b a (Secondo Terminale)**
 3: Il programma dovrà instanziare due processi figli, Mittente e Ricevente, dove:
 
 ```c
-#(MITTENTE): esegue in loop in cui ad ogni iterazione si mette in attesa di una stringa dallo standart input
+"(MITTENTE)": esegue in loop in cui ad ogni iterazione si mette in attesa di una stringa dallo standart input
 ed invia un messaggio con la stringa sulla prima coda. Quando l utente inserisce "exit"
 il programma deve inviare un messaggio con una stringa "exit" sulla seconda coda e terminare
 
-#(RICEVENTE): esegue in loop in cui ad ogni iterazione si mette in attesa di un messaggio dalla seconda coda
+"(RICEVENTE)": esegue in loop in cui ad ogni iterazione si mette in attesa di un messaggio dalla seconda coda
 e appena ricevuta stamperà sullo standart output la stringa ricevuta. In caso di ricezione della 
 stringa "exit" dovrà terminare
 ```
