@@ -26,11 +26,11 @@ Scrivere un programma basato su code di messaggi UNIX per consentire la conversa
      
 [2]: Si utilizzi la funzione scanf() per leggere una stringa dallo standard input.
 
-		```c
-		/*Chat.c*/
-		printf("Msg da inviare: ");	
-		scanf("%s",m.stringa); // Prelevo il messaggio da inviare		
-		```
+```c
+/*Chat.c*/
+printf("Msg da inviare: ");	
+scanf("%s",m.stringa); // Prelevo il messaggio da inviare		
+```
 
 La struttura struct contenente i tipi di messaggio da inviare:
 
