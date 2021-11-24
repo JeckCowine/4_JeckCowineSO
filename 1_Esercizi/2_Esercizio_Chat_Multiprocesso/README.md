@@ -16,6 +16,7 @@ Scrivere un programma basato su code di messaggi UNIX per consentire la conversa
 								   stringa 'exit' dovrà terminare
 								   
 ![image](https://user-images.githubusercontent.com/93724872/143234187-26364783-5594-4445-8d3f-ae21bb58ab60.png)
+
 [1]: Se un mittente ed un ricevente usano gli stessi caratteri di ingresso, 
         essi devono poter comunicare tra loro usando le stesse code di messaggi condivise. 
         Se invece un mittente e un ricevente usano caratteri di ingresso diversi,
