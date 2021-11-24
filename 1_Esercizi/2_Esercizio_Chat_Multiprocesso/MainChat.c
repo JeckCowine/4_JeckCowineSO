@@ -35,9 +35,9 @@ int main(int argc, char *argv[]) {
 	for(i=0; i<2; i++){
 		pid = fork();
 			if(pid==0){	// Processo figlio
-				if(i==0) Mittente(m,id_coda_ricevente, id_coda_invio);
-				else Ricevente(m,id_coda_ricevente);
-			}else if (pid <0){perror("Fork fallita");exit(1);}
+				if(i==0) Mittente(m,id_coda_ricevente, id_coda_invio); //i=0 Mittente
+				else Ricevente(m,id_coda_ricevente);                             //i=1 Ricevente
+			}else if (pid <0){perror("Fork fallita");exit(1);}       
 	}
 
 	// Attendo che i figli, mittente e destinatario, siano terminati
