@@ -223,3 +223,4 @@ rm -f *.o
 rm -f ./chat
 ```
 
+![image](https://github.com/JeckCowine/Esercizi/blob/main/4_Utility/images/Terminale_Chat.png)
