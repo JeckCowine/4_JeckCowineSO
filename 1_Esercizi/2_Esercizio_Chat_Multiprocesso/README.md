@@ -20,6 +20,8 @@ stringa "exit" dovrà terminare
 
 ![image](https://user-images.githubusercontent.com/93724872/143234187-26364783-5594-4445-8d3f-ae21bb58ab60.png)
 
+![image](https://github.com/JeckCowine/Esercizi/blob/main/4_Utility/images/Chat_Multiprocesso.png)
+
 1: Se un mittente ed un ricevente usano gli stessi caratteri di ingresso
 
 es: **./chat a b (Primo Terminale)  ./chat a b (Secondo Terminale)**
