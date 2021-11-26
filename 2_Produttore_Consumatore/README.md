@@ -11,11 +11,11 @@ Sommario degli esempi:
 
 Produttore-Consumatore singolo buffer con scambio parametri mediante Shared Memory;
 
-- `[**2_CodaCircolare**]`
+- [**2_CodaCircolare**](https://github.com/JeckCowine/Esercizi/tree/main/2_Produttore_Consumatore/2_CodaCircolare)
 
 Produttore-Consumatore con con pool di buffer gestito come coda circolare con scambio parametri mediante Shared Memory;
 
-- `[**3_VettorediStato**]`
+- [**3_VettorediStato**](https://github.com/JeckCowine/Esercizi/tree/main/2_Produttore_Consumatore/3_VettorediStato)
 
 Produttore-Consumatore con pool di buffer gestito con vettore di stato con scambio parametri mediante Shared Memory;
 
@@ -23,10 +23,10 @@ Produttore-Consumatore con pool di buffer gestito con vettore di stato con scamb
 
 Sommario degli esempi:
 
-- `[**4_MailBoxAsincrona**]`
+- [**4_MailBoxAsincrona**](https://github.com/JeckCowine/Esercizi/tree/main/2_Produttore_Consumatore/4_MailBoxAsincrona)
 
 Produttore-Consumatore con scambio parametri mediante MailBox Asincrona;
 
-- `[**5_MailBoxSincrona**]`
+- [**5_MailBoxSincrona**](https://github.com/JeckCowine/Esercizi/tree/main/2_Produttore_Consumatore/5_MailBoxSincrona)
 
 Produttore-Consumatore con scambio parametri mediante MailBox Sincrona;
