@@ -4,7 +4,7 @@
 
 In the file is present💻:
 
-[**1_Esercizi_Varii**](https://github.com/JeckCowine/Esercizi/tree/main/1_Esercizi) 📃
+[**1_Esercizi_Vari**](https://github.com/JeckCowine/Esercizi/tree/main/1_Esercizi) 📃
 
 2_Problema_Produttore_Consumatore 📄
 
