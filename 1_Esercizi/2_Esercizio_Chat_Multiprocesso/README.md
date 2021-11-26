@@ -190,35 +190,35 @@ Per l'esecuzione del programma si usufruiscono di due terminali che parlano tra 
 [2]: ./chat b a
 
 Esecuzione Programma dai due terminali:
-```[1] console                                                                [2] console
+```[1] console                         [2] console
 $ make                                                                            
 gcc MainChat.c Chat.c -o chat                                       
-$ ./chat a b                                            $ ./chat b a 
-I caratteri inseriti sono: a b                          I caratteri inseriti sono: b a
-Msg da inviare: Hi					Msg da inviare:
-	[Mittente]: Hi					[Ricevente]: Hi
+$ ./chat a b                            $ ./chat b a 
+I caratteri inseriti sono: a b          I caratteri inseriti sono: b a
+Msg da inviare: Hi			Msg da inviare:
+	[Mittente]: Hi			[Ricevente]: Hi
 Msg da inviare: I'M															
-	[Mittente]: I'M					[Ricevente]: I'M
+	[Mittente]: I'M			[Ricevente]: I'M
 Msg da inviare: Gianluca												
-	[Mittente]: Gianluca				[Ricevente]: Gianluca
+	[Mittente]: Gianluca		[Ricevente]: Gianluca
 Msg da inviare: Covino													
-	[Mittente]: Covino				[Ricevente]: Covino
+	[Mittente]: Covino		[Ricevente]: Covino
 Msg da inviare: I'M															
-	[Mittente]: I'M					[Ricevente]: I'M		
+	[Mittente]: I'M			[Ricevente]: I'M		
 Msg da inviare: Student												
-	[Mittente]: Student				[Ricevente]: Student
+	[Mittente]: Student		[Ricevente]: Student
 Msg da inviare: of 															
-	[Mittente]: of					[Ricevente]: of
+	[Mittente]: of			[Ricevente]: of
 Msg da inviare: the 
-	[Mittente]: the					[Ricevente]: the	
+	[Mittente]: the			[Ricevente]: the	
 Msg da inviare: Napoli
-	[Mittente]: Napoli				[Ricevente]: Napoli
+	[Mittente]: Napoli		[Ricevente]: Napoli
 Msg da inviare: University
-	[Mittente]: University				[Ricevente]: University
+	[Mittente]: University		[Ricevente]: University
 Msg da inviare: exit
-[Invio Exit]: exit					[Coda Ricevente Eliminata]: Identifier removed
-[Ricevuto Exit]: exit					exit
-$ make clean						[Coda Mittente Eliminata]: Invalid argument
+[Invio Exit]: exit			[Coda Ricevente Eliminata]: Identifier removed
+[Ricevuto Exit]: exit			exit
+$ make clean				[Coda Mittente Eliminata]: Invalid argument
 rm -f *.o
 rm -f ./chat
 ```
