@@ -6,7 +6,7 @@ In the file is present💻:
 
 [**1_Esercizi_Vari**](https://github.com/JeckCowine/Esercizi/tree/main/1_Esercizi) 📃
 
-[**2_Problema_Produttore_Consumatore**](hhttps://github.com/JeckCowine/Esercizi/tree/main/2_Produttore_Consumatore) 📄
+[**2_Problema_Produttore_Consumatore**](https://github.com/JeckCowine/Esercizi/tree/main/2_Produttore_Consumatore) 📄
 
 [**3_Problema_Lettore_Scrittore**](https://github.com/JeckCowine/Esercizi/tree/main/3_Lettore_Scrittore) 📑
 
