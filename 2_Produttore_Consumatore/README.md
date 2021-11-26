@@ -7,7 +7,7 @@
 Sommario degli esempi:
 
 
-- `[**1_SingleBuffer**]`
+- [**1_SingleBuffer**](https://github.com/JeckCowine/Esercizi/tree/main/2_Produttore_Consumatore/1_SingleBuffer)
 
 Produttore-Consumatore singolo buffer con scambio parametri mediante Shared Memory;
 
