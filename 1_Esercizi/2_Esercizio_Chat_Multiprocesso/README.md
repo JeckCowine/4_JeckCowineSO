@@ -184,6 +184,7 @@ clean:
 ```
 
 Per l'esecuzione del programma si usufruiscono di due terminali che parlano tra loro
+
 [1]: ./chat a b
 
 [2]: ./chat b a
