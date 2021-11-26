@@ -2,8 +2,6 @@
 
 Scrivere un programma basato su code di messaggi UNIX per consentire la conversazione tra utenti del sistema. 
 
-```c
-
 1: Il programma deve essere un eseguibile che due utenti (su due terminali distinti) eseguono per poter conversare.
 2: Il programma deve accettare in ingresso dalla linea di comando una coppia di caratteri da utilizzare
 come identificativi delle code da usare per le conversazioni
@@ -16,7 +14,6 @@ il programma deve inviare un messaggio con una stringa "exit" sulla seconda coda
 "(RICEVENTE)": esegue in loop in cui ad ogni iterazione si mette in attesa di un messaggio dalla seconda coda
 e appena ricevuta stamperà sullo standart output la stringa ricevuta. In caso di ricezione della 
 stringa "exit" dovrà terminare
-```
 
 ![image](https://github.com/JeckCowine/Esercizi/blob/main/4_Utility/images/Chat_Multiprocesso.png)
 
