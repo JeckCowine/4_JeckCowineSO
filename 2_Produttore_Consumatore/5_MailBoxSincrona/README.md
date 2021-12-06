@@ -129,6 +129,8 @@ Esecuzione Programma Da Terminale:
 $ make
 gcc MainMailBoxSinc.c MailBoxSincrona.c -o MailBoxSinc
 $ ./MailBoxSinc
+Esercizio Produttore Consumatore con Mailbox Sincrona
+
 	PRODUTTORE[1]
 Messaggio Inviato(int intero) = [395]
 Messaggio Inviato(char carattere) = [V]
