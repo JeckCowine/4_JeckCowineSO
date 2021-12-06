@@ -104,6 +104,8 @@ Esecuzione Programma Da Terminale:
 $ make
 gcc MainMailBoxAsinc.c MailBoxAsincrona.c -o MailBoxAsinc
 $ ./MailBoxAsinc
+Esercizio Produttore Consumatore con Mailbox Asincrona
+
 	PRODUTTORE[1]
 Messaggio Inviato(int intero) = [508]
 Messaggio Inviato(char carattere) = [B]
