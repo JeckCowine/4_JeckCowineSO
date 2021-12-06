@@ -83,6 +83,8 @@ Esecuzione Programma Da Terminale:
 $ make
 gcc MainCoda.c CodaCircolare.c semafori.c -o CodaCircolare
 $ ./CodaCircolare
+Esercizio Produttore Consumatore Coda Circolare con Semafori
+
 	PRODUTTORE[1]
 Il valore Prodotto(int buffer[DIM])= [456]
 Il valore Prodotto(char buffer2[DIM])= [M]
