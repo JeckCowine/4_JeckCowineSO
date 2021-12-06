@@ -98,6 +98,8 @@ Esecuzione Programma Da Terminale:
 $ make
 gcc MainVettore.c VettorediStato.c semafori.c -o VettoreDiStato 
 $ ./VettoreDiStato
+Esercizio Produttore Consumatore con Vettore di Stato con Semafori
+
 	PRODUTTORE[1]
 Il valore Prodotto(int buffer[DIM])= [391]
 Il valore Prodotto(char buffer2[DIM])= [I]
