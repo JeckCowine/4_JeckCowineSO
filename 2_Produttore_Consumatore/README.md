@@ -37,4 +37,4 @@ Sommario degli esempi:
 
 - [**6_SingleBuffer_MonitorHoare**](https://github.com/JeckCowine/Esercizi/tree/main/2_Produttore_Consumatore/6_SingleBuffer_MonitorHoare)
 
-Produttore-Consumatore single buffer con scambio parametri mediante l'utilizzo del Monitor Hoare;
+Produttore-Consumatore singolo buffer con scambio parametri mediante l'utilizzo del Monitor Hoare;
