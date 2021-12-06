@@ -3,6 +3,8 @@
 #include "VettorediStato.h"
 
 int main() {
+	
+	printf("Esercizio Produttore Consumatore con Vettore di Stato con Semafori\n\n");
 
 	pid_t pid;
 	key_t Chiave_SHM = ftok("./VettoreDiStato",'V'); // chiave della shared memory
