@@ -3,7 +3,9 @@
 #include "CodaCircolare.h"
 
 int main() {
-
+	
+	printf("Esercizio Produttore Consumatore Coda Circolare con Semafori\n\n");
+	
 	pid_t pid;
 	key_t Chiave_SHM = ftok("./CodaCircolare",'C'); // chiave della shared memory
 	key_t Chiave_SEM = ftok("./CodaCircolare",'C'); // chiave del semaforo
