@@ -30,3 +30,11 @@ Produttore-Consumatore con scambio parametri mediante MailBox Asincrona;
 - [**5_MailBoxSincrona**](https://github.com/JeckCowine/Esercizi/tree/main/2_Produttore_Consumatore/5_MailBoxSincrona)
 
 Produttore-Consumatore con scambio parametri mediante MailBox Sincrona;
+
+💻`Questi file risolvono il problema grazie all'utilizzo del Monitor Hoare`.
+
+Sommario degli esempi:
+
+- [**6_SingleBuffer_MonitorHoare**](https://github.com/JeckCowine/Esercizi/tree/main/2_Produttore_Consumatore/6_SingleBuffer_MonitorHoare)
+
+Produttore-Consumatore single buffer con scambio parametri mediante l'utilizzo del Monitor Hoare;
