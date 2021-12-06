@@ -4,6 +4,8 @@
 
 int main(){
 
+	printf("Esercizio Produttore Consumatore con Mailbox Asincrona\n\n");
+	
 	pid_t pid;
 	key_t Chiave_CODA = ftok ("./MailBoxAsinc",'M');	// chiave della coda messaggio
 
