@@ -3,7 +3,9 @@
 #include "MailBoxSincrona.h"
 
 int main(){
-
+	
+	printf("Esercizio Produttore Consumatore con Mailbox Sincrona\n\n");
+	
 	pid_t pid;
 	key_t Chiave_CODA = ftok ("./MailBoxSincrona",'M'); // chiave della coda messaggio
 	
