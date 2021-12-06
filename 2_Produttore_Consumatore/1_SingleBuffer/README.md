@@ -89,6 +89,8 @@ Esecuzione Programma Da Terminale:
 $ make
 gcc MainSingleBuff.c SingleBuff.c semafori.c -o SingleBuff 
 $ ./SingleBuff
+Esercizio Produttore Consumatore Single Buffer con Semafori
+
 	PRODUTTORE[1]
 Valore Prodotto(int intero) = [756]
 Valore Prodotto(char carattere)= [D]
