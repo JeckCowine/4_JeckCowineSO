@@ -3,6 +3,8 @@
 #include "SingleBuff.h"
 
 int main() {
+
+	printf("Esercizio Produttore Consumatore Single Buffer con Semafori\n\n");
 	
 	pid_t pid; 
 	key_t Chiave_SHM = ftok ("./SingleBuff",'S');	// chiave della shared memory
