@@ -24,11 +24,11 @@ void Produttore(Vettore* v){
 
 	enter_monitor( & (v->m) );
 	
-	while(v->Spazio_Disponibile==0){ wait_condition( &(v->m), MUTEX_P); }
+	while(v->Spazio_Disponibile==0){ wait_condition( &(v->m), MUTEX_P);}
 	
     int indice = 0;
   
-    while(indice <= DIM && v->stato[indice] != BUFFER_VUOTO) { indice++; }
+    while(indice <= DIM && v->stato[indice] != BUFFER_VUOTO) { indice++;}
     
     v->stato[indice] = BUFFER_INUSO;
     v->Spazio_Disponibile--;
