@@ -24,15 +24,11 @@ void Produttore(Vettore* v){
 
 	enter_monitor( & (v->m) );
 	
-	while(v->Spazio_Disponibile==0){
-		wait_condition( &(v->m), MUTEX_P);
-	}
+	while(v->Spazio_Disponibile==0){ wait_condition( &(v->m), MUTEX_P); }
 	
     int indice = 0;
   
-    while(indice <= DIM && v->stato[indice] != BUFFER_VUOTO) {
-        indice++;
-    }
+    while(indice <= DIM && v->stato[indice] != BUFFER_VUOTO) { indice++; }
     
     v->stato[indice] = BUFFER_INUSO;
     v->Spazio_Disponibile--;
@@ -67,15 +63,11 @@ void Consumatore(Vettore* v){
 	
 	enter_monitor( & (v->m) );
 		
-	while(v->Messaggio_Disponibile ==0){
-		wait_condition(&(v->m),MUTEX_C);	
-	}
+	while(v->Messaggio_Disponibile ==0){ wait_condition(&(v->m),MUTEX_C); }
 
     int indice = 0;
     	
-    while(indice <= DIM && v->stato[indice] != BUFFER_PIENO) {
-        indice++;
-    }
+    while(indice <= DIM && v->stato[indice] != BUFFER_PIENO) { indice++; }
     
     v->stato[indice] = BUFFER_INUSO;
     v->Messaggio_Disponibile--;
