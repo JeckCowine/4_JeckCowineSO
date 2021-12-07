@@ -1,4 +1,4 @@
-/*.............MAINMONITORHOARE_H..............*/
+/*.............MAINMONITORHOARE_C..............*/
 
 #include "SinBufMonHoar.h"
 
