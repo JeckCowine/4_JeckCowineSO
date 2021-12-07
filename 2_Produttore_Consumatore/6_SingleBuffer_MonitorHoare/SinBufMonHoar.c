@@ -1,4 +1,4 @@
-/*.............SINBUFMONHOAR_H..............*/
+/*.............SINBUFMONHOAR_C..............*/
 
 #include "SinBufMonHoar.h"
 
